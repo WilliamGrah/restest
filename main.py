@@ -9,3 +9,5 @@ def get():
     result = stat.get()
     return jsonify(result)
 
+if __name__ == '__main__':
+    app.run(debug=False, use_reloader=True)
