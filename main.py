@@ -4,9 +4,15 @@ from statistic import Statistic
 app = Flask(__name__)
 
 @app.route('/')
-def get():
+def get_all():
     stat = Statistic()
     result = stat.get()
+    return jsonify(result)
+
+@app.route('/get/<id>')
+def get_detail(id):
+    stat = Statistic()
+    result = stat.get_detail(id)
     return jsonify(result)
 
 if __name__ == '__main__':

@@ -27,9 +27,14 @@ class Statistic:
     def get(self):
         db = DB()
         result = db.get("""SELECT * FROM cpu_usage""")
-        result = self.prepare_data(result)
+        return self.prepare_data(result)
 
-        return result
+    def get_detail(self, id):
+        db = DB()
+        result = db.get("""
+                SELECT * FROM cpu_usage WHERE uname=\'{}\'
+        """.format(id))
+        return self.prepare_data(result)
 
     def prepare_data(self, tup):
         result = []
