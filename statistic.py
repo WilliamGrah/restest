@@ -32,7 +32,7 @@ class Statistic:
     def get_detail(self, id):
         db = DB()
         result = db.get("""
-                SELECT * FROM cpu_usage WHERE uname=\'{}\'
+                SELECT * FROM cpu_usage WHERE uname=\'{}\' ORDER BY created_at DESC
         """.format(id))
         return self.prepare_data(result)
 
