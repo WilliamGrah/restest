@@ -36,6 +36,11 @@ class Statistic:
         """.format(id))
         return self.prepare_data(result)
 
+    def get_unames(self):
+        db = DB()
+        result = db.get("""SELECT DISTINCT uname FROM cpu_usage""")
+        return self.parse_unames(result)
+
     def prepare_data(self, tup):
         result = []
         for data in tup:
@@ -46,6 +51,9 @@ class Statistic:
             #for pos,value in enumerate(data[2]):
             #    data[2][pos] = float(value) if value.replace(".","").isdigit() else value
         return result
+
+    def parse_unames(self, data):
+        return [x[0] for x in data]
 
     def parse_date(self, date):
         date = "{}/{}/{} {}:{}:{}".format(
